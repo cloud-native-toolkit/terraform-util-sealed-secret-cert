@@ -1,5 +1,9 @@
-#output "myoutput" {
-#  description = "Description of my output"
-#  value       = "value"
-#  depends_on  = [<some resource>]
-#}
+
+output "private_key" {
+  value = local.private_key
+  sensitive = true
+}
+
+output "cert" {
+  value = local.cert
+}
