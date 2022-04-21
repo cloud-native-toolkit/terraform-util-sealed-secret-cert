@@ -13,7 +13,6 @@ resource tls_private_key generated_key {
 }
 
 resource tls_self_signed_cert cert {
-  key_algorithm   = "RSA"
   private_key_pem = local.private_key
 
   subject {
