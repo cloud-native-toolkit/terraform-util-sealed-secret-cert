@@ -1,7 +1,9 @@
 id: github.com/cloud-native-toolkit/terraform-util-sealed-secret-cert
 name: sealed-secret-cert
 type: terraform
-description: Module to collect or generate the certificate and private key used for the sealed secret component
+description: >-
+  Module to collect or generate the certificate and private key used for the
+  sealed secret component
 tags:
   - tools
   - devops
@@ -11,11 +13,76 @@ versions:
       - ocp3
       - ocp4
     dependencies: []
-    variables: [{name: cert, type: string, description: 'The public key that will be used to encrypt sealed secrets. If not provided, a new one will be generated', default: "", optional: true}, {name: private_key, type: string, description: 'The private key that will be used to decrypt sealed secrets. If not provided, a new one will be generated', default: "", optional: true}, {name: cert_file, type: string, description: The file containing the public key that will be used to encrypt the sealed secrets. If not provided a new public key will be generated, default: "", optional: true}, {name: private_key_file, type: string, description: The file containin the private key that will be used to encrypt the sealed secrets. If not provided a new private key will be generated, default: "", optional: true}]
+    variables:
+      - name: cert
+        type: string
+        description: >-
+          The public key that will be used to encrypt sealed secrets. If not
+          provided, a new one will be generated
+        default: ''
+      - name: private_key
+        type: string
+        description: >-
+          The private key that will be used to decrypt sealed secrets. If not
+          provided, a new one will be generated
+        default: ''
+      - name: cert_file
+        type: string
+        description: >-
+          The file containing the public key that will be used to encrypt the
+          sealed secrets. If not provided a new public key will be generated
+        default: ''
+      - name: private_key_file
+        type: string
+        description: >-
+          The file containin the private key that will be used to encrypt the
+          sealed secrets. If not provided a new private key will be generated
+        default: ''
+    version: v1.0.1
+    outputs:
+      - name: private_key
+        sensitive: true
+      - name: cert
+  - platforms:
+      - kubernetes
+      - ocp3
+      - ocp4
+    dependencies: []
+    variables:
+      - name: cert
+        type: string
+        description: >-
+          The public key that will be used to encrypt sealed secrets. If not
+          provided, a new one will be generated
+        default: ''
+        optional: true
+      - name: private_key
+        type: string
+        description: >-
+          The private key that will be used to decrypt sealed secrets. If not
+          provided, a new one will be generated
+        default: ''
+        optional: true
+      - name: cert_file
+        type: string
+        description: >-
+          The file containing the public key that will be used to encrypt the
+          sealed secrets. If not provided a new public key will be generated
+        default: ''
+        optional: true
+      - name: private_key_file
+        type: string
+        description: >-
+          The file containin the private key that will be used to encrypt the
+          sealed secrets. If not provided a new private key will be generated
+        default: ''
+        optional: true
     version: v1.0.0
     outputs:
       - name: private_key
-        description: output "private_key" {   value = local.private_key   sensitive = true }
+        description: >-
+          output "private_key" {   value = local.private_key   sensitive = true
+          }
       - name: cert
         description: output "cert" {   value = local.cert }
   - platforms:
@@ -23,19 +90,5 @@ versions:
       - ocp3
       - ocp4
     dependencies: []
-    #    - id: cluster
-    #      refs:
-    #        - source: github.com/ibm-garage-cloud/terraform-ibm-container-platform
-    #          version: ">= 1.7.0"
-    #        - source: github.com/ibm-garage-cloud/terraform-k8s-ocp-cluster
-    #          version: ">= 2.0.0"
-    #    - id: namespace
-    #      refs:
-    #        - source: github.com/ibm-garage-cloud/terraform-k8s-namespace
-    #          version: ">= 2.1.0"
-    #    - id: dashboard
-    #      refs:
-    #        - source: github.com/ibm-garage-cloud/terraform-k8s-dashboard
-    #          version: ">= 1.6.0"
     variables: []
     version: v0.0.0
